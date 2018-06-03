@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load compress %}
+{% block title %}Campaigns{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-lg-6">
+    <h1 class="page-header">Campaigns</h1>
+    <div class="pull-right">
+      <button type="button" class="btn btn-primary">Find group</button>
+      <a href="#" class="btn btn-warning">Create new</a>
+    </div>
+  </div>
+  <div class="col-lg-8">
+    {% if not playing and not gming %}
+    <p>You currently are not registered to any campaigns. Maybe try finding a group or create your own</p>
+    {% else %}
+      {% for obj in gming %}
+      {% endfor %}
+
+      {% for obj in playing %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% compress js inline %}
+<script>
+
+</script>
+{% endcompress %}
+{% endblock %}

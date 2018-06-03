@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'taggit',
     # apps
+    'campaigns',
     'core',
     'npcs',
     'users',
@@ -68,7 +69,7 @@ AUTHENTICATION_BACKENDS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "search")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +129,7 @@ STATICFILES_FINDERS = (
 )
 
 TAGGIT_CASE_INSENSITIVE = True
+
 
 try:
     from .local_settings import *  # noqa

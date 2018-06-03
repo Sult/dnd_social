@@ -21,8 +21,6 @@ def guest(request):
     login_form = LoginForm(data=request.POST or None, prefix="login")
     register_form = RegistrationForm(data=request.POST or None, prefix="register")
     if request.POST:
-        import pdb
-        pdb.set_trace()
         if login_form.is_valid():
             user = login_form.login()
             if user.is_active:

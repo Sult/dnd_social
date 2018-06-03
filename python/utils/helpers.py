@@ -101,8 +101,6 @@ class FieldRandomizer(object):
                     return random.choice(choices)
             except Exception as exc:
                 print(exc)
-                import pdb
-                pdb.set_trace()
         return _func
 
     def randomize(self, instance, commit=True):

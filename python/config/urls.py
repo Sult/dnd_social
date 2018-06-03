@@ -20,9 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('users.urls')),
     path('npcs/', include('npcs.urls')),
-    #
-    # # packages
-    # url(r'^jsreverse/$', urls_js, name='js_reverse'),
+    path('campaigns/', include('campaigns.urls')),
 ]
 
 if settings.DEBUG:
