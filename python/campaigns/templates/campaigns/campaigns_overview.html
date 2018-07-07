@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load compress %}
+{% load bootstrap4 %}
 {% block title %}Campaigns{% endblock %}
 
 {% block content %}
@@ -7,8 +8,8 @@
   <div class="col-lg-6">
     <h1 class="page-header">Campaigns</h1>
     <div class="pull-right">
-      <button type="button" class="btn btn-primary">Find group</button>
-      <a href="#" class="btn btn-warning">Create new</a>
+      <button type="button" class="btn btn-secondary">Find group</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#campaignForm">New Campaign</button>
     </div>
   </div>
   <div class="col-lg-8">
@@ -24,12 +25,23 @@
   </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+{% include "partials/modal_form.html" with form=form id="campaignForm" namespace="campaigns:overview" title="New campaign" %}
 {% endblock %}
 
 {% block js %}
 {% compress js inline %}
-<script>
-
+<script type="text/javascript">
+{% if form.errors%}
+$("#campaignForm").modal("show");
+{% endif %}
 </script>
 {% endcompress %}
 {% endblock %}

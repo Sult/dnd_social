@@ -72,14 +72,16 @@ BODY options, add following classes to body to change options
     <span class="ml-auto">Powered by Codesaur</span>
   </footer>
 
-  <!-- Bootstrap and necessary plugins -->
+  {# Bootstrap and necessary plugins #}
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
   <script src="{% static 'js/pace.min.js' %}"></script>
 
-  <!-- CoreUI main scripts -->
+  {# CoreUI main scripts #}
   <script src="{% static 'js/template.js' %}"></script>
+
+  <script src="{% static 'js/modal_forms.js' %}"></script>
   {% block js %}{% endblock %}
 </body>
 </html>

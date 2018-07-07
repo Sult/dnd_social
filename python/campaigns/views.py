@@ -1,20 +1,34 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import CreateView
 
-from campaigns.models import Campaign
+from braces.views import LoginRequiredMixin
 
-
-@login_required
-def campaigns(request):
-    """Campaign overview for a user"""
-    gming = request.user.gm_campaigns.all()
-    playing = request.user.player_campaigns.all()
-    return render(request, "campaigns/campaigns_overview.html", {"playing": playing, "gming": gming})
+from .forms import CampaignForm
+from .models import Campaign
 
 
-def campaign_create(request):
-    """ Create a new campaign """
+class CampaignOverView(CreateView):
+    template_name = 'campaigns/campaigns_overview.html'
+    form_class = CampaignForm
 
-    form = CampaignForm(data=request.POST or None)
+    def get_context_data(self, **kwargs):
+        self.object = None
+        context = super().get_context_data(**kwargs)
+        context['play_campaigns'] = self.request.user.player_campaigns.all()
+        context['gm_campaigns'] = self.request.user.gm_campaigns.all()
+        return context
 
-    return render(request, "campaigns/campaigns_create.html", {"playing": playing, "gming": gming})
+# @login_required
+# def campaigns(request):
+#     """Campaign overview for a user"""
+#     gming = request.user.gm_campaigns.all()
+#     playing = request.user.player_campaigns.all()
+#     return render(request, "campaigns/campaigns_overview.html", {"playing": playing, "gming": gming})
+#
+#
+# def campaign_create(request):
+#     """ Create a new campaign """
+#
+#     form = CampaignForm(data=request.POST or None)
+#
+#     return render(request, "campaigns/campaigns_create.html", {"playing": playing, "gming": gming})

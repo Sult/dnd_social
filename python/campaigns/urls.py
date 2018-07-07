@@ -1,9 +1,9 @@
 from django.urls import path
 
-from campaigns import views
+from . import views
 
 
 app_name = 'campaigns'
 urlpatterns = [
-    path('', views.campaigns, name='overview'),
+    path('', views.CampaignOverView.as_view(), name='overview')
 ]

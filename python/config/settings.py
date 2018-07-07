@@ -20,12 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ihecf5$#*jw@q42@pmc$lt$zwmv2asz42wk7$h_er!n+1nmt17'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -40,6 +34,7 @@ INSTALLED_APPS = [
     # packages
     "compressor",
     'bootstrap4',
+    'bootstrap_modal_forms',
     'django_extensions',
     'taggit',
     # apps
@@ -81,6 +76,12 @@ TEMPLATES = [
         },
     },
 ]
+
+BOOTSTRAP4 = {
+    'form_renderers': {
+        'default': 'utils.form_renderer.FormRenderer',
+    },
+}
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -129,7 +130,6 @@ STATICFILES_FINDERS = (
 )
 
 TAGGIT_CASE_INSENSITIVE = True
-
 
 try:
     from .local_settings import *  # noqa

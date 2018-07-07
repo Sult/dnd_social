@@ -9,3 +9,7 @@ class CampaignForm(forms.ModelForm):
     class Meta:
         model = Campaign
         fields = ['name', 'desc', 'image', ]
+
+    def save(self, *args, **kwargs):
+        import pdb
+        pdb.set_trace()

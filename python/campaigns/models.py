@@ -1,12 +1,13 @@
 from django.db import models
+from django.utils.translation import gettext as _
 
 
 class Campaign(models.Model):
     """ Parties are groups of users where there is a role difference between game masters and players """
 
-    name = models.CharField(max_length=64)
-    desc = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to="campaigns/")
+    name = models.CharField(_("name"), max_length=64)
+    desc = models.TextField(_("description"), null=True, blank=True)
+    image = models.ImageField(_("image"), upload_to="campaigns/", null=True, blank=True)
 
     game_masters = models.ManyToManyField("users.User", related_name="gm_campaigns")
     players = models.ManyToManyField("users.User", related_name="player_campaigns")
