@@ -5,7 +5,7 @@
     </li>
   {% if user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'campaigns:overview' %}"><i class="icon-speedometer"></i> Campaigns</a>
+      <a class="nav-link" href="{% url 'campaigns:campaign_listview' %}"><i class="icon-speedometer"></i> Campaigns</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'npcs:create_npc' %}"><i class="icon-speedometer"></i> NPC Create</a>

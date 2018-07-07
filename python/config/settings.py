@@ -34,8 +34,8 @@ INSTALLED_APPS = [
     # packages
     "compressor",
     'bootstrap4',
-    'bootstrap_modal_forms',
     'django_extensions',
+    'sorl.thumbnail',
     'taggit',
     # apps
     'campaigns',

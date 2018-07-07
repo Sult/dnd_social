@@ -10,3 +10,4 @@ future==0.16.0
 pillow==5.1.0
 psycopg2==2.7.4
 requests==2.18.4
+sorl-thumbnail==12.4.1

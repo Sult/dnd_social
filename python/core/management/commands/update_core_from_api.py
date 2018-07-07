@@ -1,4 +1,5 @@
 import requests
+import time
 from django.core.management.base import BaseCommand
 
 from core.models import (Spell, MagicSchool, Condition, DamageType, Equipment, Language, Proficiency, AbilityScore,
@@ -246,4 +247,10 @@ class Command(BaseCommand):
         for part in self.API_URLS:
             print("updating %s" % part['method'])
             for link in json_from_url(part['url'])['results']:
-                getattr(self, part['method'])(link['url'])
+                try:
+                    getattr(self, part['method'])(link['url'])
+                    time.sleep(0.3)
+                except Exception as exc:
+                    import pdb
+                    pdb.set_trace()
+                    print(exc)

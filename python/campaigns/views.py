@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
+from django.urls import reverse
+from django.views import generic
 
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, UserFormKwargsMixin
 
 from .forms import CampaignForm
-from .models import Campaign
 
 
-class CampaignOverView(CreateView):
+class CampaignOverView(LoginRequiredMixin, UserFormKwargsMixin, generic.edit.CreateView):
     template_name = 'campaigns/campaigns_overview.html'
     form_class = CampaignForm
 
@@ -17,6 +17,16 @@ class CampaignOverView(CreateView):
         context['play_campaigns'] = self.request.user.player_campaigns.all()
         context['gm_campaigns'] = self.request.user.gm_campaigns.all()
         return context
+
+    def get_success_url(self):
+        # return to newly created object
+        import pdb
+        pdb.set_trace()
+        return reverse('campaigns:campaign_view', args=(self.object.id,))
+
+
+class CampaignView(LoginRequiredMixin, generic.DetailView):
+    template_name = 'campaigns/campaigns_overview.html'
 
 # @login_required
 # def campaigns(request):
