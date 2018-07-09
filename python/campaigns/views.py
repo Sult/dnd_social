@@ -14,15 +14,14 @@ class CampaignOverView(LoginRequiredMixin, UserFormKwargsMixin, generic.edit.Cre
     def get_context_data(self, **kwargs):
         self.object = None
         context = super().get_context_data(**kwargs)
+
         context['play_campaigns'] = self.request.user.player_campaigns.all()
         context['gm_campaigns'] = self.request.user.gm_campaigns.all()
         return context
 
     def get_success_url(self):
         # return to newly created object
-        import pdb
-        pdb.set_trace()
-        return reverse('campaigns:campaign_view', args=(self.object.id,))
+        return reverse('campaigns:campaign_details', args=(self.object.slug,))
 
 
 class CampaignView(LoginRequiredMixin, generic.DetailView):

@@ -13,13 +13,15 @@
     </div>
   </div>
   <div class="col-lg-8">
-    {% if not playing and not gming %}
+    {% if not gm_campaigns and not play_campaigns %}
     <p>You currently are not registered to any campaigns. Maybe try finding a group or create your own</p>
     {% else %}
-      {% for obj in gming %}
+      {% for obj in gm_campaigns %}
+        {{ obj.name }}}
       {% endfor %}
 
-      {% for obj in playing %}
+      {% for obj in play_campaigns %}
+        {{ obj.name }}}
       {% endfor %}
     {% endif %}
   </div>
@@ -33,7 +35,7 @@
   </div>
 </div>
 
-{% include "partials/modal_form.html" with form=form id="campaignForm" namespace="campaigns:overview" title="New campaign" %}
+{% include "partials/modal_form.html" with form=form id="campaignForm" namespace="campaigns:campaigns" title="New campaign" %}
 {% endblock %}
 
 {% block js %}
