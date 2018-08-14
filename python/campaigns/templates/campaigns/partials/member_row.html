@@ -1,0 +1,27 @@
+<tr>
+  <td>
+    <div class="ckbox">
+      <input type="checkbox" id="member_{{member.pk}}">
+      <label for="member_{{member.pk}}"></label>
+    </div>
+  </td>
+  <td>
+    <div>
+      <a href="#player-profile" class="pull-left">
+        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+      </a>
+    </div>
+  </td>
+  <td>
+
+      <div class="media-body">
+        <span class="media-meta pull-right">{{ member.date_joined|date:"SHORT_DATE_FORMAT" }}</span>
+        <h4 class="title">
+          <a href="#player-profile">{{ member.username }}</a> <span class="text-success">(online)</span>
+          <span class="pull-right pagado"></span>
+        </h4>
+        <p class="summary"></p>
+      </div>
+
+  </td>
+</tr>

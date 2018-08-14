@@ -1,7 +1,7 @@
 from django import forms
 from braces.forms import UserKwargModelFormMixin
 
-from campaigns.models import Campaign
+from campaigns.models import Campaign, CampaignMember
 
 
 class CampaignForm(UserKwargModelFormMixin, forms.ModelForm):
@@ -11,9 +11,7 @@ class CampaignForm(UserKwargModelFormMixin, forms.ModelForm):
         model = Campaign
         fields = ['name', 'desc', 'image', ]
 
-    def save(self):
-        campaign = super().save()
-
-        # creator of campaign is be default also game_master
-        campaign.game_masters.add(self.user)
+    def save(self, commit=True):
+        campaign = super().save(commit=commit)
+        CampaignMember.objects.create(member=self.user, campaign=campaign, gm=True)
         return campaign

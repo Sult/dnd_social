@@ -13,8 +13,7 @@ class Campaign(models.Model):
     desc = models.TextField(_("description"), null=True, blank=True)
     image = models.ImageField(_("image"), upload_to="campaigns/", null=True, blank=True)
 
-    game_masters = models.ManyToManyField("users.User", related_name="gm_campaigns")
-    players = models.ManyToManyField("users.User", related_name="player_campaigns")
+    members = models.ManyToManyField('users.User', through="campaigns.CampaignMember", related_name="campaigns")
 
     # used for enabling sharing link
     share = models.BooleanField(default=False)
@@ -27,6 +26,27 @@ class Campaign(models.Model):
         if not self.slug:
             self.slug = get_unique_slug(self, 'name', 'slug')
         super().save(*args, **kwargs)
+
+    @property
+    def image_url(self):
+        return self.image.url if self.image else "/static/campaigns/campaign-party.jpg"
+
+    @property
+    def players(self):
+        return self.members.filter(member__gm=False)
+
+    @property
+    def game_masters(self):
+        return self.members.filter(member__gm=True)
+
+
+class CampaignMember(models.Model):
+    """M2M between users and campaigns to keep track of their member status and more"""
+
+    campaign = models.ForeignKey('campaigns.Campaign', related_name='member', on_delete=models.CASCADE)
+    member = models.ForeignKey('users.User', related_name='member', on_delete=models.CASCADE)
+
+    gm = models.BooleanField(default=False)
 
 
 class Handout(models.Model):

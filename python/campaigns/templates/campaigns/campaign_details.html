@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link href="{% static 'css/snippets/table_filter.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Campaign{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="page-header">{{object.name|title}}</h1>
+    <p>{{object.desc}}</p>
+  </div>
+</div>
+
+{# game master view #}
+<div class="row">
+  <div class="col-md-4 top-offset-2">
+
+    <section class="content">
+			<h3>Members</h3>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="table-container">
+            <table class="table table-filter">
+              <tbody>
+                {% for member in campaign.members.all %}
+                  {% include "campaigns/partials/member_row.html" with member=member members=campaign.members game_masters=campaign.game_masters %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% endblock %}

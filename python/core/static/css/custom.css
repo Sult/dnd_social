@@ -1,3 +1,14 @@
 .hidden {
     display: none;
 }
+
+.page-header {
+    margin-top: 0.5rem;
+}
+
+.top-offset-1{margin-top: 0.5rem;}
+.top-offset-2{margin-top: 1rem;}
+.top-offset-3{margin-top: 1.5rem;}
+.top-offset-4{margin-top: 2rem;}
+.top-offset-5{margin-top: 2.5rem;}
+.top-offset-6{margin-top: 3rem;}

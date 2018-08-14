@@ -5,24 +5,35 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-8">
     <h1 class="page-header">Campaigns</h1>
     <div class="pull-right">
       <button type="button" class="btn btn-secondary">Find group</button>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#campaignForm">New Campaign</button>
     </div>
   </div>
+</div>
+<div class="row">
   <div class="col-lg-8">
-    {% if not gm_campaigns and not play_campaigns %}
+    {% if not campaigns %}
     <p>You currently are not registered to any campaigns. Maybe try finding a group or create your own</p>
     {% else %}
-      {% for obj in gm_campaigns %}
-        {{ obj.name }}}
+    <div class="row">
+      {% for obj in campaigns %}
+      <div class="col-lg-4">
+        <div class="card">
+          <img class="card-img-top" src="{{obj.image_url}}" alt="Campaign Image">
+          <div class="card-body">
+            <h5 class="card-title">{{obj.name|title}}</h5>
+            <p class="card-text">{{obj.desc}}</p>
+            <div class="float-right">
+              <a href="{% url 'campaigns:campaign_details' slug=obj.slug %}" class="btn btn-primary">Play</a>
+            </div>
+          </div>
+        </div>
+      </div>
       {% endfor %}
-
-      {% for obj in play_campaigns %}
-        {{ obj.name }}}
-      {% endfor %}
+    </div>
     {% endif %}
   </div>
 </div>
