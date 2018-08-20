@@ -8,6 +8,7 @@
 {% block title %}Campaign{% endblock %}
 
 {% block content %}
+{# header #}
 <div class="row">
   <div class="col-md-8">
     <h1 class="page-header">{{object.name|title}}</h1>
@@ -15,12 +16,16 @@
   </div>
 </div>
 
-{# game master view #}
+{# Members block #}
 <div class="row">
   <div class="col-md-4 top-offset-2">
-
     <section class="content">
-			<h3>Members</h3>
+			<h3>
+        <span>Members</span>
+        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#inviteModal">
+          Invite
+        </button>
+      </h3>
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="table-container">
@@ -35,6 +40,48 @@
         </div>
       </div>
     </section>
+  </div>
+</div>
+
+{# invite modal #}
+<div class="modal fade" id="inviteModal" tabindex="-1" role="dialog" aria-labelledby="inviteModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Invite Players</h4>
+        <p>
+          To invite others to join your Game as a Player, enter their email address or username below.
+          If they don't already have a DnD Social account, we'll ask them to take a quick moment to create one.
+        </p>
+
+{% comment %}
+Pending Invitations
+
+    (No pending invitations!)
+{% endcomment %}
+        <h4>
+          <span>Share Link</span>
+          <div class="pull-right">
+            <label class="switch">
+              <input type="checkbox">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </h4>
+        <p>You can also share the special link below with anyone and they'll be able to join your Game as a Player.</p>
+        <a href=""></a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
 </div>
 
